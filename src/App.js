@@ -16,7 +16,7 @@ const app = new Clarifai.App({
 
 const particlesOptions = {
   particles: {
-    number: { 
+    number: {
       value: 50,
       density: {
         enable: true,
@@ -32,10 +32,29 @@ class App extends Component {
     this.state = {
       input: '',
       imageUrl: '',
-      box: {}, 
-      route: 'signin', 
+      box: {},
+      route: 'signin',
       isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+      }
     }
+  }
+
+  loadUser = (data) => {
+    this.setState({ user:
+      {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        entries: data.entries,
+        joined: data.joined
+      }
+    })
   }
 
   calculateFaceLocation = (data) => {
@@ -64,9 +83,9 @@ class App extends Component {
     console.log('click');
     this.setState({imageUrl: this.state.input})
     app.models.predict(
-        Clarifai.FACE_DETECT_MODEL, 
+        Clarifai.FACE_DETECT_MODEL,
         this.state.input)
-      .then(response => this.displayFaceBox(this.calculateFaceLocation(response))) 
+      .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
       .catch(err => console.log(err));
   }
 
@@ -91,7 +110,7 @@ class App extends Component {
         ? <div>
         <Logo />
         <Rank />
-        <ImageLinkForm 
+        <ImageLinkForm
           onInputChange={this.onInputChange}
           onButtonSubmit={this.onButtonSubmit}
         />
@@ -100,8 +119,8 @@ class App extends Component {
       : (
         route === 'signin'
         ? <SignIn onRouteChange={this.onRouteChange}/>
-        : <Register onRouteChange={this.onRouteChange} />
-      ) 
+        : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
+      )
         }
       </div>
     );

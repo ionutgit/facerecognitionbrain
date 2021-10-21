@@ -1,9 +1,6 @@
 {
   "name": "facerecognitionbrain",
   "version": "0.1.0",
-  "engines": {
-    "node": "14.x"
-  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.13.0",
@@ -20,12 +17,24 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "serve -s build"
+    "start": "serve -s build",
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   }
 }

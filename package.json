@@ -20,7 +20,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "serve -s build",
+    "build": "serve -s build",
   },
   "eslintConfig": {
     "extends": [

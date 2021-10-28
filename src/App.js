@@ -7,18 +7,50 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import SignIn from './components/SignIn/SignIn';
 import Register from './components/Register/Register';
-import Particles from 'react-particles-js';
+import Particles from 'react-tsparticles';
 
 const particlesOptions = {
   particles: {
+    color: {
+      value: "#ffffff",
+    },
+    links: {
+      color: "#ffffff",
+      distance: 150,
+      enable: true,
+      opacity: 0.5,
+      width: 1,
+    },
+    collisions: {
+      enable: true,
+    },
+    move: {
+      direction: "none",
+      enable: true,
+      outMode: "bounce",
+      random: false,
+      speed: 3,
+      straight: false,
+    },
     number: {
-      value: 50,
       density: {
         enable: true,
         value_area: 800,
-      }
+      },
+      value: 50,
     },
-  }
+    opacity: {
+      value: 0.5,
+    },
+    shape: {
+      type: "circle",
+    },
+    size: {
+      random: true,
+      value: 5,
+    },
+  },
+  detectRetina: true,
 }
 
 const initialState = {
@@ -120,9 +152,10 @@ class App extends Component {
   const {isSignedIn, box, route, imageUrl, user } = this.state;
   return (
     <div className="App">
-      <Particles className="particles"
-          params={particlesOptions}
-        />
+      <Particles
+          id="tsparticles"
+          options={particlesOptions}
+      />
         <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange} />
         { route === 'home'
         ? <div>
